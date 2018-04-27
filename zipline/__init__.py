@@ -80,3 +80,14 @@ __all__ = [
     'run_algorithm',
     'utils',
 ]
+
+
+def setup(self):
+    import numpy as np
+    self.old_opts = np.get_printoptions()
+    np.set_printoptions(legacy='1.13')
+
+
+def teardown(self):
+    import numpy as np
+    np.set_printoptions(**self.old_opts)
