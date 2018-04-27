@@ -4,7 +4,7 @@ Tests for Factor terms.
 from functools import partial
 from itertools import product
 from nose_parameterized import parameterized
-from unittest import TestCase
+from unittest import TestCase, skipIf
 
 from toolz import compose
 from numpy import (
@@ -54,6 +54,7 @@ from zipline.utils.numpy_utils import (
     NaTns,
 )
 from zipline.utils.math_utils import nanmean, nanstd
+from zipline.utils.pandas_utils import new_pandas
 
 from .base import BasePipelineTestCase
 
@@ -826,6 +827,7 @@ class FactorTestCase(BasePipelineTestCase):
             with self.assertRaises(BadPercentileBounds):
                 f.winsorize(min_percentile=min_, max_percentile=max_)
 
+    @skipIf(new_pandas, '')
     @parameter_space(
         seed_value=range(1, 2),
         normalizer_name_and_func=[

@@ -2,7 +2,7 @@
 Tests BoundColumn attributes and methods.
 """
 from contextlib2 import ExitStack
-from unittest import TestCase
+from unittest import TestCase, skipIf
 
 from pandas import date_range, DataFrame
 from pandas.util.testing import assert_frame_equal
@@ -11,7 +11,8 @@ from zipline.lib.labelarray import LabelArray
 from zipline.pipeline import Pipeline
 from zipline.pipeline.data.testing import TestingDataSet as TDS
 from zipline.testing import chrange, temp_pipeline_engine
-from zipline.utils.pandas_utils import ignore_pandas_nan_categorical_warning
+from zipline.utils.pandas_utils import ignore_pandas_nan_categorical_warning, \
+    new_pandas
 
 
 class LatestTestCase(TestCase):
@@ -58,6 +59,7 @@ class LatestTestCase(TestCase):
             columns=self.assets,
         )
 
+    @skipIf(new_pandas, '')
     def test_latest(self):
         columns = TDS.columns
         pipe = Pipeline(

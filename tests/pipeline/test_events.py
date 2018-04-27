@@ -400,6 +400,7 @@ class EventsLoaderTestCase(WithAssetFinder,
         # This method exists to be overridden by BlazeEventsLoaderTestCase
         return EventsLoader(events, next_value_columns, previous_value_columns)
 
+    @skipIf(new_pandas, '')
     def test_load_with_trading_calendar(self):
         engine = SimplePipelineEngine(
             lambda x: self.loader,
@@ -429,6 +430,7 @@ class EventsLoaderTestCase(WithAssetFinder,
             else:
                 raise AssertionError("Unexpected column %s." % c)
 
+    @skipIf(new_pandas, '')
     def test_load_properly_forward_fills(self):
         engine = SimplePipelineEngine(
             lambda x: self.loader,
@@ -646,6 +648,7 @@ class EventLoaderUtilsTestCase(ZiplineTestCase):
     ).values
 
     # Test with timezones on either side of the meridian
+    @skipIf(new_pandas, '')
     @parameterized.expand([(expected_us, 'US/Eastern', us_dates),
                            (expected_russia, 'Europe/Moscow', moscow_dates)])
     def test_normalize_to_query_time(self, expected, tz, dates):
