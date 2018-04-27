@@ -12,8 +12,9 @@ import pandas as pd
 from distutils.version import StrictVersion
 
 pandas_version = StrictVersion(pd.__version__)
+new_pandas = pandas_version >= StrictVersion('0.20.0')
 
-if pandas_version >= StrictVersion('0.20.0'):
+if new_pandas:
     from pandas.core.tools.datetimes import normalize_date  # noqa
 else:
     from pandas.tseries.tools import normalize_date  # noqa
