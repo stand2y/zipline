@@ -314,7 +314,6 @@ class TestAPIShim(WithCreateBarData,
         """
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("ignore", PerformanceWarning)
-            warnings.simplefilter("ignore", RuntimeWarning)
             warnings.simplefilter("default", ZiplineDeprecationWarning)
             algo = self.create_algo(sid_accessor_algo)
             algo.run(self.data_portal)
@@ -344,7 +343,6 @@ class TestAPIShim(WithCreateBarData,
         """
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("ignore", PerformanceWarning)
-            warnings.simplefilter("ignore", RuntimeWarning)
             warnings.simplefilter("default", ZiplineDeprecationWarning)
             algo = self.create_algo(data_items_algo)
             algo.run(self.data_portal)
@@ -370,7 +368,6 @@ class TestAPIShim(WithCreateBarData,
     def test_iterate_data(self):
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("ignore", PerformanceWarning)
-            warnings.simplefilter("ignore", RuntimeWarning)
             warnings.simplefilter("default", ZiplineDeprecationWarning)
 
             algo = self.create_algo(simple_algo)
@@ -402,7 +399,6 @@ class TestAPIShim(WithCreateBarData,
     def test_history(self):
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("ignore", PerformanceWarning)
-            warnings.simplefilter("ignore", RuntimeWarning)
             warnings.simplefilter("default", ZiplineDeprecationWarning)
 
             sim_params = self.sim_params.create_new(
@@ -445,7 +441,6 @@ class TestAPIShim(WithCreateBarData,
     def test_simple_transforms(self):
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("ignore", PerformanceWarning)
-            warnings.simplefilter("ignore", RuntimeWarning)
             warnings.simplefilter("default", ZiplineDeprecationWarning)
 
             sim_params = SimulationParameters(
@@ -517,7 +512,6 @@ class TestAPIShim(WithCreateBarData,
     def test_manipulation(self):
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("ignore", PerformanceWarning)
-            warnings.simplefilter("ignore", RuntimeWarning)
             warnings.simplefilter("default", ZiplineDeprecationWarning)
 
             algo = self.create_algo(simple_algo)
@@ -540,7 +534,6 @@ class TestAPIShim(WithCreateBarData,
 
     def test_reference_empty_position_by_int(self):
         with warnings.catch_warnings(record=True) as w:
-            warnings.simplefilter("ignore", RuntimeWarning)
             warnings.simplefilter("default", ZiplineDeprecationWarning)
 
             algo = self.create_algo(reference_missing_position_by_int_algo)
@@ -555,7 +548,6 @@ class TestAPIShim(WithCreateBarData,
 
     def test_reference_empty_position_by_unexpected_type(self):
         with warnings.catch_warnings(record=True) as w:
-            warnings.simplefilter("ignore", RuntimeWarning)
             warnings.simplefilter("default", ZiplineDeprecationWarning)
 
             algo = self.create_algo(

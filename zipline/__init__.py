@@ -93,11 +93,14 @@ def setup(self):
         return
 
     self.old_opts = np.get_printoptions()
+    self.old_invalid = np.geterr()['invalid']
     np.set_printoptions(legacy=legacy_version)
+    np.seterr(invalid='ignore')
 
 
 def teardown(self):
     if self.old_opts is None:
         return
 
+    np.seterr(invalid=self.old_invalid)
     np.set_printoptions(**self.old_opts)
