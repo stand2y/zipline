@@ -648,9 +648,9 @@ class EventLoaderUtilsTestCase(ZiplineTestCase):
     ).values
 
     # Test with timezones on either side of the meridian
-    @skipIf(new_pandas, '')
     @parameterized.expand([(expected_us, 'US/Eastern', us_dates),
                            (expected_russia, 'Europe/Moscow', moscow_dates)])
+    @skipIf(new_pandas, '')
     def test_normalize_to_query_time(self, expected, tz, dates):
         # Order matters in pandas 0.18.2. Prior to that, using tz_convert on
         # a DatetimeIndex with DST/EST timestamps mixed resulted in some of
