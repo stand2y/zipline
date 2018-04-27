@@ -17,11 +17,15 @@ import os
 
 # This is *not* a place to dump arbitrary classes/modules for convenience,
 # it is a place to expose the public interfaces.
+from distutils.version import StrictVersion
+import numpy as np
+
 from . import data
 from . import finance
 from . import gens
 from . import utils
 from .utils.calendars import get_calendar
+from .utils.numpy_utils import numpy_version
 from .utils.run_algo import run_algorithm
 from ._version import get_versions
 
@@ -83,11 +87,17 @@ __all__ = [
 
 
 def setup(self):
-    import numpy as np
+    legacy_version = '1.13'
+    if numpy_version <= StrictVersion(legacy_version):
+        self.old_opts = None
+        return
+
     self.old_opts = np.get_printoptions()
-    np.set_printoptions(legacy='1.13')
+    np.set_printoptions(legacy=legacy_version)
 
 
 def teardown(self):
-    import numpy as np
+    if self.old_opts is None:
+        return
+
     np.set_printoptions(**self.old_opts)
