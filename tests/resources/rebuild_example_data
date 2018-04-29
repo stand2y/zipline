@@ -84,7 +84,7 @@ def eof(*args, **kwargs):
     '--rebuild-input',
     is_flag=True,
     default=False,
-    help="Should we rebuild the input data from Yahoo?",
+    help="Should we rebuild the input data from IEX?",
 )
 
 @click.pass_context
