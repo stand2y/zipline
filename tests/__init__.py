@@ -1,1 +1,1 @@
-from zipline import setup, teardown
+from zipline import setup, teardown  # noqa For nosetests
